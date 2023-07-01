@@ -1,17 +1,15 @@
 // Require fs
 /**
- * * fs.readFile(path, options, callback):
- * ? Lee el contenido de un archivo de forma asincrónica 
+ * * fs.readFileSync(path, options):
+ * ? Devuelve el contenido de un archivo por lo cual se guarda en una variable para poder utilizarlo 
  * @param path: Ruta del archivo
  * @param options: Opciones de lectura, como la codificacion
- * @callback: Funcion de devolucion que recibe err(error) y data(contenido del archivo)
  */
 let fs = require('fs');
 
 //Se utiliza el archivo
-fs.readFile("demo.txt", 'utf-8', (err,data)=>{
-    console.log(data);
-})
+const data = fs.readFileSync('demo.txt', 'utf-8');
+console.log(data);
 
 
 
