@@ -1,8 +1,5 @@
 //main.js
-/**
- * * Importa el "module.js" utilizando require() sin la extencion .js
- * ? Crear archivo "main.js" para importar el "module.js"
- */
-
-const config = require("./module");
-console.log(config.place());
+const datos = require('./datos.json');
+console.log("json: ",datos);
+console.log("json id: ", datos.campus.map(res=>res.id).join(' '));
+console.log("json name: ",datos.campus.map(res=>res.name).join(' '));
