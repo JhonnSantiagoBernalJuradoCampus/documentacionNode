@@ -1,17 +1,17 @@
-// Configurar la codificacion de caracteres de la entrada estandar
-process.stdin.setEncoding('utf8');
+// Require fs
+/**
+ * * fs.readFile(path, options, callback):
+ * ? Lee el contenido de un archivo de forma asincrónica 
+ * @param path: Ruta del archivo
+ * @param options: Opciones de lectura, como la codificacion
+ * @callback: Funcion de devolucion que recibe err(error) y data(contenido del archivo)
+ */
+let fs = require('fs');
 
-// Escuchamos la entrada de datos : data
-
-process.stdin.on('data', (input)=>{
-    // Quitamos el espaciado cuando accionamos el enter
-
-    input = input.trim();
-    console.log(`El dato de entra es ${input}`);
-    // process.exit() termina el proceso
-    process.exit()
+//Se utiliza el archivo
+fs.readFile("demo.txt", 'utf-8', (err,data)=>{
+    console.log(data);
 })
-
 
 
 
