@@ -1,15 +1,41 @@
 // Require fs
 /**
- * * fs.readFileSync(path, options):
- * ? Devuelve el contenido de un archivo por lo cual se guarda en una variable para poder utilizarlo 
- * @param path: Ruta del archivo
- * @param options: Opciones de lectura, como la codificacion
+ * * fs.writeFile(file,data, options, callback):
+ * ? Escribe datos de un archivo de forma asincrona
+ * @param file: Ruta del archivo al que se escribiran los datos
+ * @param data: Datos a escribir en el archivo
+ * @param options: Opciones de escritura, como la codificacion{
+ * @param callback: Función de devolución de llamada que recibe err (error) cuando
+se completa la escritura.
  */
 let fs = require('fs');
 
-//Se utiliza el archivo
-const data = fs.readFileSync('demo.txt', 'utf-8');
-console.log(data);
+data = {
+    campus: [
+        {
+            id:1,
+            name:"Apolo"
+        },
+        {
+            id:2,
+            name:"Artemis"
+        },
+        {
+            id:3,
+            name:"Sputnik"
+        }
+    ]
+}
 
+fs.writeFile("db/db.json",JSON.stringify(data), (err)=>{
+    if (err){
+        console.log(err);
+    }
+    else {
+        console.log("File written succesfully\n");
+        console.log("The file has this contents:");
+        console.log(fs.readFileSync("db/db.json", "utf-8"));
+    }
+})
 
 
