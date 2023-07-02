@@ -1,12 +1,18 @@
 // Require fs
 /**
- * * fs.mkdirSync(path, options):
- * ?  Crea un directorio de forma sincrónica (bloqueante).
+ * * fs.rmdir(path, callback):
+ * ?  Elimina un directorio de forma sincrónica
  * @param path = ruta del directorio a crear
- * @param options = Opciones para la creación del directorio.
+ * @param callback = Funcion de devolucion de llamada que recibe err cuando se completa la eliminacion
 */
 const fs = require('fs');
 const path = require('path');
 
-fs.mkdirSync(path.join(__dirname, "src"));
-console.log("El directorio se ha creado correctamente");
+fs.rmdir(path.join(__dirname, "src"), (err)=>{
+    if (err){
+        console.log(err);
+    }
+    else{
+        console.log("El directorio se ha eliminado correctamente");
+    }
+})
