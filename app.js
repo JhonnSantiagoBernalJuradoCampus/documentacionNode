@@ -1,12 +1,19 @@
 // Require fs
 /**
- * * fs.readdirSync(path):
- * ? Lee el contenido de un directorio de forma sincrónica (bloqueante).
- * @param path = ruta del directorio
+ * * fs.mkdir(path, options, callback):
+ * ? Crea un directorio de forma asincrónica
+ * @param path = ruta del directorio a crear
+ * @param options = Opciones para la creación del directorio.
+ * @param callback = Función de devolución de llamada que recibe err(error) cuando se completa la creación
 */
-let fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
-let array = fs.readdirSync(__dirname);
-array.forEach((val,id)=>{
-    console.log(val);
+fs.mkdir(path.join(__dirname, "src"), (error)=>{
+    if (error){
+        console.log(error);
+    }
+    else{
+        console.log('Directory createde successfully');
+    }
 });
