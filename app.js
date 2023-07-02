@@ -1,12 +1,10 @@
 // Require fs
 /**
- * * fs.appendFile(file,data, options, callback):
- * ? Agrega datos al final de un archivo de forma asincrónica
+ * * fs.appendFileSync(file,data, options):
+ * ? Agrega datos al final de un archivo de forma sincrónica (bloqueante)
  * @param file: Ruta del archivo al que se escribiran los datos
  * @param data: Datos a escribir en el archivo
  * @param options: Opciones de escritura, como la codificacion
- * @param callback: Función de devolución de llamada que recibe err (error) cuando
-se completa la operación
 */
 let fs = require('fs');
 
@@ -43,19 +41,12 @@ let add = {
     ]
 }
 
-fs.writeFileSync("db/db2.json", JSON.stringify(data))
+fs.writeFileSync("db/db2.json", JSON.stringify(data));
 console.log("Se ha escrito correctamente,\n");
 console.log(`Lo que se escribio fue: ${fs.readFileSync("db/db2.json")}`);
 
-fs.appendFile("db/db2.json", JSON.stringify(add),(error)=>{
-    if (error){
-        console.log(error);
-    }
-    else{
-        console.log(`Se ha agregado correctamente, el archivo ahora tiene este contenido:\n
-        ${fs.readFileSync("db/db2.json")}`);
-    }
-})
+fs.appendFileSync("db/db2.json", JSON.stringify(add));
+console.log(`Se ha agregado correctamente, el archivo ahora tiene este contenido:\n ${fs.readFileSync("db/db2.json")}`);
 /**
  * * El ejemplo tiene fallos por el echo de el formato json
  * ? Revisar
