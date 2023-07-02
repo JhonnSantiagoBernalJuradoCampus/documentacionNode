@@ -1,16 +1,1 @@
-{
-    "campus":[
-        {
-            "id":1,
-            "name":"Apolo"
-        },
-        {
-            "id":2,
-            "name":"Artemis"
-        },
-        {
-            "id":3,
-            "name":"Sputnik"
-        }
-    ]
-}
+{"campus":[{"id":1,"name":"Apolo"},{"id":2,"name":"Artemis"},{"id":3,"name":"Sputnik"}]}

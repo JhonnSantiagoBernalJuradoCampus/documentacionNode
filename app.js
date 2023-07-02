@@ -1,12 +1,10 @@
 // Require fs
 /**
- * * fs.writeFile(file,data, options, callback):
- * ? Escribe datos de un archivo de forma asincrona
+ * * fs.writeFileSync(file,data, options):
+ * ? Escribe datos de un archivo de forma sincronica bloqueante
  * @param file: Ruta del archivo al que se escribiran los datos
  * @param data: Datos a escribir en el archivo
- * @param options: Opciones de escritura, como la codificacion{
- * @param callback: Función de devolución de llamada que recibe err (error) cuando
-se completa la escritura.
+ * @param options: Opciones de escritura, como la codificacion
  */
 let fs = require('fs');
 
@@ -27,15 +25,10 @@ data = {
     ]
 }
 
-fs.writeFile("db/db.json",JSON.stringify(data), (err)=>{
-    if (err){
-        console.log(err);
-    }
-    else {
-        console.log("File written succesfully\n");
-        console.log("The file has this contents:");
-        console.log(fs.readFileSync("db/db.json", "utf-8"));
-    }
-})
+fs.writeFileSync("db/db.json",JSON.stringify(data))
+console.log("File written succesfully\n");
+console.log("The file has this contents:");
+console.log(fs.readFileSync("db/db.json", "utf-8"));
+
 
 
