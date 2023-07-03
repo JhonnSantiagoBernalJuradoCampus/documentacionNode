@@ -24,9 +24,6 @@ const http = createServer((req,res)=>{
         dia = (Number(dia)+1);
     }
     let fechaMañana = `${año}-${mes}-${dia}`;
-
-    console.log(fechaHoy);
-    console.log(fechaMañana);
     let data = "";
     let uri = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${fechaHoy}&end_date=${fechaMañana}&api_key=mgqT0cV04ejlKfk01uKrsaWcen4fdQG6F3JyHTKQ`;
     let key = "/asteroids";
@@ -36,17 +33,24 @@ const http = createServer((req,res)=>{
                 data += chunk;
             })
             peticion.on("end",()=>{
-                
                 let json = JSON.parse(data);
-                let plantilla = ``;
                 json = json.near_earth_objects;
-                json["2023-07-03"].forEach((val,id) => {
-                    plantilla += `<h1>Nombre: ${val.name}</h1>
+                let plantilla = ``;
+                plantilla += fs.readFileSync("index.html", "utf-8")
+                plantilla += `<main class= "container">`
+                json[fechaHoy].forEach((val,id) => {
+                    plantilla += `<h1 class= "bg-warning">Nombre: ${val.name}</h1>
                     <p>Id: ${val.id}</p>
 `
                 });
-                
-                res.end(plantilla);
+                json[fechaMañana].forEach((val,id) => {
+                    plantilla += `<h1 class= "bg-secondary">Nombre: ${val.name}</h1>
+                    <p>Id: ${val.id}</p>
+`
+                });
+                plantilla+= `</main></body></html>`
+                res.end(plantilla)
+                res.end(JSON.stringify(json));
             })
         })
     }
