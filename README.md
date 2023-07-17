@@ -48,3 +48,24 @@ appExpress.get('/campus/:idCamper', (req, res) => {
     res.send(JSON.stringify(obj))
 })
 ```
+
+## Middleware
+
+Los middlewares pueden realizar diversas tareas, como modificar los objetos de solicitud y respuesta, realizar validaciones, autenticar usuarios, administrar sesiones, registrar información de registro, comprimir o cifrar datos, entre otros.
+
+Ejemplo:
+```js
+appExpress.use(express.json());
+appExpress.use(express.text());
+
+appExpress.post('/campus/:nombre', (req, res) => {
+    let obj = {
+        data: req.body,
+        'URL-GET': req.query,
+        parametros: req.params
+    };
+    res.send(obj);
+});
+```
+1. El middleware permite la entrada de datos json y text, y asi hacemos la peticion:
+![Peticion](./src/example1.png)

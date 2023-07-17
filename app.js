@@ -2,19 +2,22 @@ import express from "express";
 
 const appExpress = express();
 
-appExpress.get('/campus', (req, res) => {
-    res.send("Hello Developer");
-});
 
-/*
-*Parametros y headers
-*/
-appExpress.get('/campus/:idCamper', (req, res) => {
+/**
+ * * Configuracion del middleware
+ * ? Habilitamos la entrada de datos de tipo json y text
+ * @var {express.json(), express.text()}
+ */
+appExpress.use(express.json());
+appExpress.use(express.text());
+
+appExpress.post('/campus/:nombre', (req, res) => {
     let obj = {
-        "Datos de la url": req.params,
-        "Encabezado": req.headers
-    }
-    res.send(JSON.stringify(obj))
+        data: req.body,
+        'URL-GET': req.query,
+        parametros: req.params
+    };
+    res.send(obj);
 })
 
 let config = {
