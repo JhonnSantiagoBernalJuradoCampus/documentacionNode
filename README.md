@@ -128,3 +128,31 @@ appExpress.listen(config, () => {
 ```
 1. Utilizamos la ruta `/campus` y despues accedemos a `appCamper` donde hacemos el proceso de los endpoints
 ![Peticion](./src/example3.png)
+
+## Variables de entorno dotenv
+Las variables de entorno en Node.js son variables específicas del entorno en el que se ejecuta una aplicación. Son valores que se pueden configurar externamente al código y se utilizan para almacenar información sensible, configuraciones personalizadas u otros datos relevantes para la aplicación.
+En Node.js, las variables de entorno se pueden acceder utilizando el objeto process.env. Este objeto proporciona acceso a todas las variables de entorno definidas en el sistema operativo donde se está ejecutando la aplicación.
+
+### Instalacion de dotenv
+
+1. Se ejecuta el comando: `npm i -E -D dotenv`
+2. Crea un archivo llamado .env en la raíz de tu proyecto y agrega las variables de entorno que deseas configurar. Por ejemplo:
+![ejemplo](./src/example4.png)
+```js
+HOSTNAME = "127.100.07.12"
+PORT = 5510
+```
+3. En el archivo donde desees utilizar las variables de entorno (por ejemplo, app.js), agrega las siguientes líneas al principio del archivo:
+```js
+//app.js
+import dotenv from "dotenv";
+
+dotenv.config();
+
+console.log(process.env.HOSTNAME);
+console.log(process.env.PORT);
+```
+![Terminal](./src/example5.png)
+
+4. Recuerda que el archivo .env debe mantenerse fuera del control de versiones, ya que generalmente contiene información sensible como claves de API o contraseñas. Sin embargo, puedes proporcionar un archivo .env.example que incluya las variables de entorno esperadas con valores de ejemplo para que otros desarrolladores puedan configurar su propio archivo .env.
+![.env.example](./src/example6.png)

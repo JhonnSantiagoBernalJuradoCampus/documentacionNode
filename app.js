@@ -1,18 +1,13 @@
-// app.js
-import express from "express";
+//app.js
+import dotenv from "dotenv";
+/**
+ * * Cargamos el archivo .env 
+ * ? Todo por defecto, la ruta del archivo se encuentra en la raiz del proyecto 
+ */
 
-//*Importamos el modulo que contiene los endpoints
-import appCamper from "./routers/campus.js";
-const appExpress = express();
+dotenv.config();
 
-appExpress.use(express.json());
-appExpress.use("/campus", appCamper);
+//* Mostramos los datos guardados en el archivo .env
 
-let config = {
-    hostname: "127.100.07.12",
-    port: 5510
-}
-
-appExpress.listen(config, () => {
-    console.log(`http://${config.hostname}:${config.port}/campus`);
-});
+console.log(process.env.HOSTNAME);
+console.log(process.env.PORT);
