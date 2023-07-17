@@ -1,24 +1,12 @@
+// app.js
 import express from "express";
 
+//*Importamos el modulo que contiene los endpoints
+import appCamper from "./routers/campus.js";
 const appExpress = express();
 
-
-/**
- * * Configuracion del middleware
- * ? Habilitamos la entrada de datos de tipo json y text
- * @var {express.json(), express.text()}
- */
 appExpress.use(express.json());
-appExpress.use(express.text());
-
-appExpress.post('/campus/:nombre', (req, res) => {
-    let obj = {
-        data: req.body,
-        'URL-GET': req.query,
-        parametros: req.params
-    };
-    res.send(obj);
-})
+appExpress.use("/campus", appCamper);
 
 let config = {
     hostname: "127.100.07.12",

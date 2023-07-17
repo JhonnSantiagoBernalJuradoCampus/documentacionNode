@@ -69,3 +69,62 @@ appExpress.post('/campus/:nombre', (req, res) => {
 ```
 1. El middleware permite la entrada de datos json y text, y asi hacemos la peticion:
 ![Peticion](./src/example1.png)
+
+## Router
+
+En Express, un router es una forma de organizar y gestionar las rutas de una aplicación web de manera modular. Los routers permiten agrupar rutas relacionadas y sus respectivos controladores en un lugar específico.
+Un router en Express es un objeto que proporciona métodos para definir rutas y gestionar las solicitudes HTTP asociadas a esas rutas. Puedes utilizar varios routers en una aplicación Express para dividir y organizar las rutas en diferentes módulos o archivos.
+- Sigue esta estructura:
+![Rutas](./src/example2.png)
+Ejemplo de uso:
+- campus.js:
+```js
+// campus.js
+// Importamos el Router 
+import { Router } from "express";
+
+const appCamper = Router();
+
+//Middleware
+appCamper.use((req, res, next) => {
+    console.log(req);
+    next();
+})
+
+appCamper.get("/", (req, res) => {
+    res.send("GET");
+});
+
+appCamper.get("/:id", (req, res) => {
+    res.send(`GET: ${req.params.id}`);
+});
+
+appCamper.post("/", (req, res) => {
+    res.send(`POST`);
+})
+
+//*Exportamos el Router
+export default appCamper;
+```
+- app.js:
+```js
+// app.js
+import express from "express";
+//*Importamos el modulo que contiene los endpoints
+import appCamper from "./routers/campus.js";
+const appExpress = express();
+
+appExpress.use(express.json());
+appExpress.use("/campus", appCamper);
+
+let config = {
+    hostname: "127.100.07.12",
+    port: 5510
+}
+
+appExpress.listen(config, () => {
+    console.log(`http://${config.hostname}:${config.port}/campus`);
+});
+```
+1. Utilizamos la ruta `/campus` y despues accedemos a `appCamper` donde hacemos el proceso de los endpoints
+![Peticion](./src/example3.png)
