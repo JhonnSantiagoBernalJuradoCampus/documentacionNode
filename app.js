@@ -1,13 +1,19 @@
 //app.js
+import express from "express";
 import dotenv from "dotenv";
-/**
- * * Cargamos el archivo .env 
- * ? Todo por defecto, la ruta del archivo se encuentra en la raiz del proyecto 
- */
-
 dotenv.config();
+let appExpress = express();
+/**
+ * * Obtenemos la cadena de configuracion del servidor
+ * ? y la parseamos a un objeto de js
+ * @var {process.env.MY_CONFIG}
+ */
+let config = JSON.parse(process.env.MY_CONFIG);
 
-//* Mostramos los datos guardados en el archivo .env
+appExpress.get('/campus', (req, res) => {
+    res.send("Campers :)");
+});
 
-console.log(process.env.HOSTNAME);
-console.log(process.env.PORT);
+appExpress.listen(config, () => {
+    console.log(`http://${config.hostname}:${config.port}`);
+});

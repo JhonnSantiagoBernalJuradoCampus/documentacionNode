@@ -156,3 +156,41 @@ console.log(process.env.PORT);
 
 4. Recuerda que el archivo .env debe mantenerse fuera del control de versiones, ya que generalmente contiene información sensible como claves de API o contraseñas. Sin embargo, puedes proporcionar un archivo .env.example que incluya las variables de entorno esperadas con valores de ejemplo para que otros desarrolladores puedan configurar su propio archivo .env.
 ![.env.example](./src/example6.png)
+
+### Configuracion de dotenv con express
+```js
+//.env
+MY_CONFIG = {"hostname": "127.100.07.12", "port": 5510}
+```
+Esta línea de código carga las variable de entorno definidas en el archivo .env en process.env, lo que permite acceder a ellas posteriormente.
+```js
+//app.js
+import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
+let appExpress = express();
+/**
+ * * Obtenemos la cadena de configuracion del servidor
+ * ? y la parseamos a un objeto de js
+ * @var {process.env.MY_CONFIG}
+ */
+let config = JSON.parse(process.env.MY_CONFIG);
+
+appExpress.get('/campus', (req, res) => {
+    res.send("Campers :)");
+});
+
+appExpress.listen(config, () => {
+    console.log(`http://${config.hostname}:${config.port}`);
+});
+```
+1. Se obtiene la configuración del servidor desde la variable de entorno MY_CONFIG, que se supone contiene una cadena JSON. La cadena se analiza y se convierte en un objeto JavaScript utilizando JSON.parse(), y se guarda en la variable config.
+
+![thunder](./src/example7.png)
+
+2. Se define una ruta GET para la ruta /campus. Cuando se accede a esta ruta, se envía la respuesta "Campers :)".
+
+3. Ejemplo de el `.env.example`:
+```js
+MY_CONFIG = {}
+```
