@@ -1,18 +1,18 @@
 # Express
 
 ## Intalacion:
-- npm init -y
-- npm i -E -D nodemon
-- npm i -E -D express
+iniciamos el npm : `- npm init -y`
+- `npm i -E -D nodemon`
+- `npm i -E -D express`
 
 1. el archivo package.json ya debe tener iniciado el nodemon en:
-"dev": "nodemon --quiet ./app.js"
+`"dev": "nodemon --quiet ./app.js"`
 
 2. Debes importar express en un archivo app.js:
 ```js
 import express from 'express';
 ```
-3. Ahora vamos a iniciar el servidor Express y configuraremos una ruta llamada "/campus".
+3. Ahora vamos a iniciar el servidor Express y configuraremos una ruta llamada `/campus`.
 ```js
 import express from 'express';
 
@@ -31,4 +31,4 @@ expressApp.listen(config, ()=>{
 })
 ```
 4. En la terminal debera poner el comando:
-- npm run dev
+`- npm run dev`
