@@ -282,3 +282,29 @@ appUser.post("/", async (req, res) => {
 })
 ```
 ![thunder](./src/example9.png)
+## UPDATE
+Ejemplo:
+```js
+/**
+ * Actualizar datos
+ * @var {req.body}
+ * * {
+ * *    "nom_com": "CAMPER",
+ * *    "edad": 2023
+ * * }
+ * @var {req.params}
+ * * {
+ * *    "id": 1 
+ * * }
+ */
+appUser.put("/:id", async (req, res) => {
+    con.query(
+        /*sql */`UPDATE tb_information SET ? WHERE id = ?`,
+        [req.body, req.params.id],
+        (err, data, fill) => {
+            res.send(data);
+        }
+    )
+})
+```
+![thunder](./src/example10.png)

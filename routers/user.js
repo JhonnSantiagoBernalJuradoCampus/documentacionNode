@@ -37,4 +37,25 @@ appUser.post("/", async (req, res) => {
         }
     )
 })
+/**
+ * Actualizar datos
+ * @var {req.body}
+ * * {
+ * *    "nom_com": "CAMPER",
+ * *    "edad": 2023
+ * * }
+ * @var {req.params}
+ * * {
+ * *    "id": 1 
+ * * }
+ */
+appUser.put("/:id", async (req, res) => {
+    con.query(
+        /*sql */`UPDATE tb_information SET ? WHERE id = ?`,
+        [req.body, req.params.id],
+        (err, data, fill) => {
+            res.send(data);
+        }
+    )
+})
 export default appUser;
