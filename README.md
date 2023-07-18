@@ -329,3 +329,21 @@ appUser.delete("/:id", async (req, res) => {
 })
 ```
 ![thunder](./src/example11.png)
+# nanoid
+NanoID es una biblioteca de generación de identificadores únicos y aleatorios en Node.js. Proporciona una forma sencilla de generar identificadores únicos que pueden ser utilizados, por ejemplo, como claves primarias en bases de datos, identificadores de objetos, tokens de autenticación, entre otros casos de uso.
+La biblioteca NanoID está diseñada para ser rápida, compacta y segura, generando identificadores únicos de forma eficiente. Utiliza una combinación de caracteres alfanuméricos y se puede configurar para generar identificadores con diferentes longitudes y utilizando diferentes alfabetos. https://github.com/ai/nanoid
+## Instalacion
+1. Abre una terminal o línea de comandos en el directorio raíz de tu proyecto
+2. Ejecuta el siguiente comando para instalar nanoID a través de npm (Node Package Manager): `npm i -E -D nanoid`
+3. Una vez que la instalación esté completa, puedes utilizar nanoID en tu proyecto de Node.js importándolo en tus archivos JavaScript. Por ejemplo, si quieres generar un nanoID en tu código, puedes hacer lo siguiente:
+```js
+//app.js
+import { nanoid } from "nanoid"
+/**
+ * ? Genera un hast de 21 caracteres
+ * @var {nanoid(10)} * Si deseamos mas o menos caracteres
+ */
+const id = nanoid(10);
+console.log(id);
+```
+![terminal](./src/example12.png)
