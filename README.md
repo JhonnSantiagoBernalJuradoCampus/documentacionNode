@@ -194,3 +194,48 @@ appExpress.listen(config, () => {
 ```js
 MY_CONFIG = {}
 ```
+## Conexión a MySQL usando 'mysql2'
+mysql2 es un paquete de Node.js que proporciona una interfaz para interactuar con bases de datos MySQL. Es una biblioteca de cliente MySQL para Node.js que se basa en el paquete mysql original pero con varias mejoras y optimizaciones.
+### Instalación de mysql2
+1. Abre una terminal o línea de comandos y navega hasta la ubicación de tu proyecto.
+2. Ejecuta el siguiente comando para instalar `npm i -E -D mysql2`:
+3. Una vez finalizada la instalación, puedes comenzar a utilizar mysql2 en tu aplicación. Asegúrate de requerirlo en tu archivo de JavaScript donde necesites interactuar con la base de datos MySQL. Puedes hacerlo utilizando el siguiente código:
+```js
+import mysql from "mysql2";
+```
+4. Con esto, podrás utilizar las funciones y métodos proporcionados por mysql2 para conectarte y realizar consultas a tu base de datos MySQL.
+Ejemplo práctico:
+Para este ejemplo creamos la base de datos con estas configuraciones:
+```sql
+/*Creamos la base de datos*/
+CREATE DATABASE db_campus;
+/*La usamos*/
+USE db_campus;
+/*Creamos la tabla*/
+CREATE TABLE tb_information(
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nom_com VARCHAR(30) DEFAULT 'Camper' NOT NULL,
+    edad INTEGER DEFAULT 18 NOT NULL
+);
+```
+5. A continuación, se crea una conexión a la base de datos MySQL utilizando el método createPool del objeto mysql. Se proporcionan los detalles de conexión, como el host, usuario, contraseña y nombre de la base de datos:
+```js
+//.env
+MY_DB = {"host": "localhost", "port": "3306", "user": "campus", "password": "campus2023", "database": "db_campus"}
+```
+```js
+const con = mysql.createPool(JSON.parse(process.env.MY_DB));
+```
+Aquí, se crea un objeto de conexión con que se utilizará para realizar la consulta a la base de datos.
+6. Luego, se realiza la consulta utilizando el método query del objeto de conexión. Se pasa la consulta SQL como una cadena y una función de devolución de llamada para manejar el resultado de la consulta:
+```js
+con.query(
+    /*sql */`SHOW COLUMNS FROM db_campus.tb_information`,
+    (err, data, fill) => {
+        res.send(data);
+    }
+);
+```
+- En este caso, la consulta es SHOW COLUMNS FROM db_campus.tb_information, que muestra las columnas de la tabla tb_information en la base de datos db_campus. La función de devolución de llamada recibe tres parámetros: err para posibles errores, res para los resultados de la consulta y fie para los metadatos de los campos.
+- En el código proporcionado, se imprime el resultado de la consulta en la consola utilizando console.log(res). Puedes comentar o eliminar los comentarios (//) si deseas ver también los posibles errores (err) y los metadatos de los campos (fie).
+![thunder](./src/example8.png)
