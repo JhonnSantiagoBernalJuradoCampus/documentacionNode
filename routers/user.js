@@ -58,4 +58,20 @@ appUser.put("/:id", async (req, res) => {
         }
     )
 })
+/**
+ * Eliminar datos
+ * @var {req.params}
+ * * {
+ * *    "id": 1
+ * * }
+ */
+appUser.delete("/:id", async (req, res) => {
+    con.query(
+        /*sql */`DELETE FROM tb_information WHERE ?`,
+        req.params,
+        (err, data, fill) => {
+            res.send(data);
+        }
+    )
+})
 export default appUser;

@@ -308,3 +308,24 @@ appUser.put("/:id", async (req, res) => {
 })
 ```
 ![thunder](./src/example10.png)
+## DELETE 
+Ejemplo:
+```js
+/**
+ * Eliminar datos
+ * @var {req.params}
+ * * {
+ * *    "id": 1
+ * * }
+ */
+appUser.delete("/:id", async (req, res) => {
+    con.query(
+        /*sql */`DELETE FROM tb_information WHERE ?`,
+        req.params,
+        (err, data, fill) => {
+            res.send(data);
+        }
+    )
+})
+```
+![thunder](./src/example11.png)
