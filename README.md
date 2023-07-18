@@ -259,3 +259,26 @@ appUser.get('/:id?', async (req, res) => {
     );
 })
 ```
+## INSERT INTO
+Ejemplo:
+```js
+/**
+ * Insertar datos
+ * @var {req.body}
+ * * {
+ * *    "id": 1,
+ * *    "nom_com": "Camper",
+ * *    "edad": 2023
+ * * }
+ */
+appUser.post("/", async (req, res) => {
+    con.query(
+        /*sql */`INSERT INTO tb_information SET ?`,
+        req.body,
+        (err, data, fill) => {
+            res.send(data);
+        }
+    )
+})
+```
+![thunder](./src/example9.png)
