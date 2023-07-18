@@ -239,3 +239,23 @@ con.query(
 - En este caso, la consulta es SHOW COLUMNS FROM db_campus.tb_information, que muestra las columnas de la tabla tb_information en la base de datos db_campus. La función de devolución de llamada recibe tres parámetros: err para posibles errores, res para los resultados de la consulta y fie para los metadatos de los campos.
 - En el código proporcionado, se imprime el resultado de la consulta en la consola utilizando console.log(res). Puedes comentar o eliminar los comentarios (//) si deseas ver también los posibles errores (err) y los metadatos de los campos (fie).
 ![thunder](./src/example8.png)
+## SELECT
+Ejemplo:
+```js
+/**
+ * Buscar datos
+ * @var {/:id}
+ * * Parametro opcional si no lo envias por defecto buscara todos los datos
+ */
+appUser.get('/:id?', async (req, res) => {
+    const con = mysql.createPool(JSON.parse(process.env.MY_DB));
+    let sql = (req.params.id)
+        ? [`SELECT * FROM tb_information WHERE ?`, req.params]
+        : [`SELECT * FROM tb_information`];
+    con.query(...sql,
+        (err, data, fill) => {
+            res.send(data);
+        }
+    );
+})
+```
